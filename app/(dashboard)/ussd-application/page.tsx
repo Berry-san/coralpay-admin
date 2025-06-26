@@ -1,30 +1,30 @@
-'use client'
+"use client";
 
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button";
 import {
   FormField,
   FormItem,
   FormControl,
   FormMessage,
   Form,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { UssdApplicationSchema, UssdApplicationFormData } from './validations'
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { UssdApplicationSchema, UssdApplicationFormData } from "./validations";
 
 const UssdApplication = () => {
   const form = useForm<UssdApplicationFormData>({
     resolver: zodResolver(UssdApplicationSchema),
     defaultValues: {
       authorizationLetter: undefined,
-      shortCodeType: '',
+      shortCodeType: "",
     },
-  })
+  });
 
   const onSubmit = async (data: UssdApplicationFormData) => {
-    console.log(data)
-  }
+    console.log(data);
+  };
   return (
     <div>
       <div className="bg-[url('/images/backgroundImage.jpg')] bg-center bg-no-repeat bg-cover h-[500px] w-full rounded-md ">
@@ -51,7 +51,7 @@ const UssdApplication = () => {
                           type="file"
                           accept=".pdf,.jpg,.png"
                           onChange={(e) => {
-                            field.onChange(e.target.files?.[0] || null)
+                            field.onChange(e.target.files?.[0] || null);
                           }}
                           className="bg-white"
                         />
@@ -67,7 +67,26 @@ const UssdApplication = () => {
                     <FormItem>
                       <FormControl>
                         <select
-                          className="border-b w-full border-text-primary bg-white"
+                          className="border-b w-full border-text-primary py-2 bg-white"
+                          {...field}
+                        >
+                          <option value="">Select Short Code Type</option>
+                          <option value="shared">Shared</option>
+                          <option value="dedicated">Dedicated</option>
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="shortCodeType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <select
+                          className="border-b w-full border-text-primary py-2 bg-white"
                           {...field}
                         >
                           <option value="">Select Short Code Type</option>
@@ -89,7 +108,7 @@ const UssdApplication = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UssdApplication
+export default UssdApplication;

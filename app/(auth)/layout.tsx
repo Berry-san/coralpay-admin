@@ -17,7 +17,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
       <div className="col-span-12 lg:col-span-7 overflow-auto px-6 md:px-20">
         <div className="flex justify-center h-full">
-          <div className="w-full max-w-lg">{children}</div>
+          <div className="w-full max-w-lg mt-40">{children}</div>
         </div>
       </div>
     </div>

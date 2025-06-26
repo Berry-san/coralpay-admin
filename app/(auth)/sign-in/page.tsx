@@ -1,38 +1,38 @@
-'use client'
+"use client";
 
-import { Button } from '@/components/ui/button'
-import { useRouter } from 'next/navigation'
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 // import { useAppDispatch } from '@/store/hooks'
-import { SignInFormData, SignInFormSchema } from './validations'
+import { SignInFormData, SignInFormSchema } from "./validations";
 
 const SignIn = () => {
-  const router = useRouter()
+  const router = useRouter();
   //   const dispatch = useAppDispatch()
 
   const form = useForm<SignInFormData>({
     resolver: zodResolver(SignInFormSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
-  })
+  });
 
   const onSubmit = async (data: SignInFormData) => {
-    console.log(data)
-  }
+    console.log(data);
+  };
   return (
     <div className="flex flex-col text-text-primary text-left">
       <h1 className="text-4xl font-bold text-sidebar text-left">Sign In</h1>
@@ -76,19 +76,13 @@ const SignIn = () => {
             )}
           />
 
-          <div className="flex justify-end">
-            <Link href="/forgot-passcode" className="text-text-primary text-sm">
-              Forgot passcode?
-            </Link>
-          </div>
-
           <Button className="w-full h-16 text-white" type="submit" size="lg">
             Sign In
           </Button>
         </form>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

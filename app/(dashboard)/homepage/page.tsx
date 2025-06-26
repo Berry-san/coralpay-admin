@@ -1,51 +1,52 @@
-import { Button } from '@/components/ui/button'
-import React from 'react'
-import { ChartPieDonut } from '../../../components/PieChart'
-import { ChartConfig } from '@/components/ui/chart'
-import { ChartAreaLegend } from '@/components/AreaChart'
+import { Button } from "@/components/ui/button";
+import React from "react";
+import { ChartPieDonut } from "../../../components/PieChart";
+import { ChartConfig } from "@/components/ui/chart";
+import { ChartAreaLegend } from "@/components/AreaChart";
+import { User2Icon } from "lucide-react";
 
 const chartData = [
-  { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
-  { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
-  { browser: 'firefox', visitors: 187, fill: 'var(--color-firefox)' },
-]
+  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
+];
 
 const chartData1 = [
-  { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
-  { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
-]
+  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+];
 
 const chartConfig = {
   visitors: {
-    label: 'Visitors',
+    label: "Visitors",
   },
   chrome: {
-    label: 'Chrome',
-    color: '#4C0463',
+    label: "Chrome",
+    color: "#4C0463",
   },
   safari: {
-    label: 'Safari',
-    color: '#05426C',
+    label: "Safari",
+    color: "#05426C",
   },
   firefox: {
-    label: 'Firefox',
-    color: '#AC869B',
+    label: "Firefox",
+    color: "#AC869B",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 const chartConfig1 = {
   visitors: {
-    label: 'Visitors',
+    label: "Visitors",
   },
   chrome: {
-    label: 'Chrome',
-    color: '#00328B',
+    label: "Chrome",
+    color: "#00328B",
   },
   safari: {
-    label: 'Safari',
-    color: '#6356D7',
+    label: "Safari",
+    color: "#6356D7",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 const HomePage = () => {
   return (
@@ -66,30 +67,44 @@ const HomePage = () => {
       </div>
       <div className="border w-full rounded-md p-6 mt-6">
         <p className="font-bold text-2xl">Transaction History</p>
-        <div className="grid grid-cols-5 gap-4">
-          <div className="flex flex-col text-secondary">
-            <span className="text-3xl font-bold">300</span>
-            <span className="text-lg">Customers</span>
+        <div className="grid grid-cols-5 gap-4 text-[#00328B] mt-4">
+          <div className="flex space-x-4 items-center justify-center">
+            <User2Icon className="w-10 h-10 text-white p-2 bg-[#00328B] rounded" />
+            <div className="flex flex-col">
+              <span className="text-3xl font-bold">300</span>
+              <span className="text-lg">Customers</span>
+            </div>
           </div>
-          <div className="flex flex-col text-secondary">
-            <span className="text-3xl font-bold">300</span>
-            <span className="text-lg">Customers</span>
+          <div className="flex space-x-4 items-center justify-center">
+            <User2Icon className="w-10 h-10 text-white p-2 bg-[#00328B] rounded" />
+            <div className="flex flex-col">
+              <span className="text-3xl font-bold">300</span>
+              <span className="text-lg">Customers</span>
+            </div>
           </div>
-          <div className="flex flex-col text-secondary">
-            <span className="text-3xl font-bold">300</span>
-            <span className="text-lg">Customers</span>
+          <div className="flex space-x-4 items-center justify-center">
+            <User2Icon className="w-10 h-10 text-white p-2 bg-[#00328B] rounded" />
+            <div className="flex flex-col">
+              <span className="text-3xl font-bold">300</span>
+              <span className="text-lg">Customers</span>
+            </div>
           </div>
-          <div className="flex flex-col text-secondary">
-            <span className="text-3xl font-bold">300</span>
-            <span className="text-lg">Customers</span>
+          <div className="flex space-x-4 items-center justify-center">
+            <User2Icon className="w-10 h-10 text-white p-2 bg-[#00328B] rounded" />
+            <div className="flex flex-col">
+              <span className="text-3xl font-bold">300</span>
+              <span className="text-lg">Customers</span>
+            </div>
           </div>
-          <div className="flex flex-col text-secondary">
-            <span className="text-3xl font-bold">300</span>
-            <span className="text-lg">Customers</span>
+          <div className="flex space-x-4 items-center justify-center">
+            <User2Icon className="w-10 h-10 text-white p-2 bg-[#00328B] rounded" />
+            <div className="flex flex-col">
+              <span className="text-3xl font-bold">300</span>
+              <span className="text-lg">Customers</span>
+            </div>
           </div>
         </div>
         <div className="w-full flex divide-x divide-gray-300 mt-4">
-          {' '}
           <div className="w-2/3  flex flex-col">
             <div className="py-4 border-b grid grid-cols-1 md:grid-cols-2 gap-4">
               <ChartPieDonut
@@ -130,7 +145,7 @@ const HomePage = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
