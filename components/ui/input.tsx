@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import * as React from 'react'
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
-import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
-import { IoImageOutline } from 'react-icons/io5'
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { IoImageOutline } from "react-icons/io5";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string
-  leftIcon?: React.ReactNode
-  rightIcon?: React.ReactNode
-  allowMultiple?: boolean
+  label?: string;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  allowMultiple?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -28,29 +28,29 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const [show, setShow] = React.useState(false)
-    const handleClick = () => setShow(!show)
+    const [show, setShow] = React.useState(false);
+    const handleClick = () => setShow(!show);
 
     const safeValue =
-      (value || defaultValue) !== undefined && type !== 'file'
-        ? (value || defaultValue) ?? ''
-        : ''
+      (value || defaultValue) !== undefined && type !== "file"
+        ? (value || defaultValue) ?? ""
+        : "";
 
     const multipleAttr =
-      type === 'file' ? { multiple: allowMultiple || false } : {}
+      type === "file" ? { multiple: allowMultiple || false } : {};
 
-    const inputId = React.useId()
+    const inputId = React.useId();
 
-    const localInputRef = React.useRef<HTMLInputElement>(null)
+    const localInputRef = React.useRef<HTMLInputElement>(null);
 
     const triggerClick = () => {
-      localInputRef.current?.click()
-    }
+      localInputRef.current?.click();
+    };
 
     return (
       <div className="relative w-full">
         {/* For non-file inputs */}
-        {type !== 'file' && (
+        {type !== "file" && (
           <>
             {leftIcon && (
               <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-black">
@@ -58,12 +58,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               </span>
             )}
             <input
-              type={type === 'password' ? (show ? 'text' : 'password') : type}
+              type={type === "password" ? (show ? "text" : "password") : type}
               placeholder=" "
               className={cn(
-                'flex peer h-14 w-full border-b border-borderColor px-3 pt-4 pb-2 text-sm placeholder:text-muted-foreground outline-none focus:outline-primary disabled:cursor-not-allowed disabled:opacity-50',
-                leftIcon && 'pl-8',
-                rightIcon && 'pr-12',
+                "flex peer h-9 w-full border-b border-borderColor px-3 pt-4 pb-2 text-sm placeholder:text-muted-foreground outline-none focus:outline-primary disabled:cursor-not-allowed disabled:opacity-50",
+                leftIcon && "pl-8",
+                rightIcon && "pr-12",
                 className
               )}
               ref={ref}
@@ -71,9 +71,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               {...multipleAttr}
               {...props}
             />
-            {(type === 'password' || rightIcon) && (
+            {(type === "password" || rightIcon) && (
               <span className="absolute inset-y-0 right-0 flex items-center">
-                {type === 'password' && !rightIcon && (
+                {type === "password" && !rightIcon && (
                   <Button
                     aria-label="toggle show password"
                     onClick={handleClick}
@@ -96,7 +96,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
 
         {/* For file inputs */}
-        {type === 'file' && (
+        {type === "file" && (
           <>
             {/* Hidden input */}
             <input
@@ -123,10 +123,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </>
         )}
       </div>
-    )
+    );
   }
-)
+);
 
-Input.displayName = 'Input'
+Input.displayName = "Input";
 
-export { Input }
+export { Input };

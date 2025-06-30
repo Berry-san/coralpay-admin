@@ -68,7 +68,7 @@ const HomePage = () => {
       <div className="border w-full rounded-md p-6 mt-6">
         <p className="font-bold text-2xl">Transaction History</p>
         <div className="grid grid-cols-5 gap-4 text-[#00328B] mt-4">
-          <div className="flex space-x-4 items-center justify-center">
+          <div className="flex space-x-4 items-start justify-center">
             <User2Icon className="w-10 h-10 text-white p-2 bg-[#00328B] rounded" />
             <div className="flex flex-col">
               <span className="text-3xl font-bold">300</span>
