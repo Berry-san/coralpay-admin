@@ -1,37 +1,38 @@
-'use client'
+"use client";
 
-import { Button } from '@/components/ui/button'
-import { useRouter } from 'next/navigation'
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { ForgotPasswordFormData, ForgotPasswordFormSchema } from './validations'
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { ForgotPasswordFormSchema } from "./validations";
+import { ForgotPasswordFormData } from "@/types";
 // import { useAppDispatch } from '@/store/hooks'
 
 const ForgotPassword = () => {
-  const router = useRouter()
+  const router = useRouter();
   //   const dispatch = useAppDispatch()
 
   const form = useForm<ForgotPasswordFormData>({
     resolver: zodResolver(ForgotPasswordFormSchema),
     defaultValues: {
-      email: '',
+      email: "",
     },
-  })
+  });
 
   const onSubmit = async (data: ForgotPasswordFormData) => {
-    console.log(data)
-  }
+    console.log(data);
+  };
   return (
     <div className="flex flex-col text-text-primary text-left">
       <h1 className="text-4xl font-bold text-sidebar text-left">Sign In</h1>
@@ -64,7 +65,7 @@ const ForgotPassword = () => {
         </form>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

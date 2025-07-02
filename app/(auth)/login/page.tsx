@@ -15,23 +15,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { SignUpFormData } from "@/types";
-import { SignUpFormSchema } from "./validations";
+import { LoginFormSchema } from "./validations";
+import { LoginFormData } from "@/types";
 // import { useAppDispatch } from '@/store/hooks'
 
-const SignUp = () => {
+const Login = () => {
   const router = useRouter();
   //   const dispatch = useAppDispatch()
 
-  const form = useForm<SignUpFormData>({
-    resolver: zodResolver(SignUpFormSchema),
+  const form = useForm<LoginFormData>({
+    resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = async (data: SignUpFormData) => {
+  const onSubmit = async (data: LoginFormData) => {
     console.log(data);
   };
   return (
@@ -78,7 +78,7 @@ const SignUp = () => {
           />
 
           <Button className="w-full h-16 text-white" type="submit" size="lg">
-            Sign Up
+            Login{" "}
           </Button>
         </form>
       </Form>
@@ -86,4 +86,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;

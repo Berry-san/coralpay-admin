@@ -1,38 +1,39 @@
-'use client'
+"use client";
 
-import { Button } from '@/components/ui/button'
-import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { ResetPasswordFormData, ResetPasswordFormSchema } from './validations'
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { ResetPasswordFormSchema } from "./validations";
+import { ResetPasswordFormData } from "@/types";
 
 const ResetPassword = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const form = useForm<ResetPasswordFormData>({
     resolver: zodResolver(ResetPasswordFormSchema),
     defaultValues: {
-      password: '',
-      confirmPassword: '',
+      password: "",
+      confirmPassword: "",
     },
-  })
+  });
 
   const onSubmit = async (data: ResetPasswordFormData) => {
     // Only submit the password
-    const { password } = data
-    console.log({ password })
+    const { password } = data;
+    console.log({ password });
 
     // Optional: redirect or show success toast
     // router.push('/login')
-  }
+  };
 
   return (
     <div className="flex flex-col text-text-primary text-left">
@@ -85,7 +86,7 @@ const ResetPassword = () => {
         </form>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default ResetPassword
+export default ResetPassword;
