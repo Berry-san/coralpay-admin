@@ -26,3 +26,8 @@ export const resetPassword = async (data: ResetPasswordFormData) => {
   const response = await axios(API_AUTH_URL).post("/reset-password", data);
   return response;
 };
+
+export const refreshToken = async () => {
+  const response = await axios(API_AUTH_URL).post("/refresh");
+  return response;
+};

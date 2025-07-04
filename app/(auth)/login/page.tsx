@@ -17,11 +17,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LoginFormSchema } from "./validations";
 import { LoginFormData } from "@/types";
-// import { useAppDispatch } from '@/store/hooks'
+import { useLoginMutation } from "@/app/queryHandler/mutation";
+import { setCookie } from "@/app/utils/cookies";
+import { useAppDispatch } from "@/store/hooks";
+import { setUser } from "@/store/slice/userService/userService";
+import { addMilliseconds } from "date-fns";
 
 const Login = () => {
   const router = useRouter();
-  //   const dispatch = useAppDispatch()
+  const { mutate: loginMutation, data } = useLoginMutation();
+  const dispatch = useAppDispatch();
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(LoginFormSchema),
@@ -30,6 +35,45 @@ const Login = () => {
       password: "",
     },
   });
+
+  useEffect(() => {
+    if (!data) return;
+
+    if (data) {
+      const { accessToken, refreshToken, expiresIn } = data?.data.data || {};
+      // const {
+      //   balance,
+      //   firstName,
+      //   lastName,
+      //   businessAccountNumber,
+      //   ccif,
+      //   profilePicture,
+      //   bvn,
+      //   nin,
+      //   middleName,
+      //   email,
+      //   phoneNumber,
+      //   rcnumber,
+      //   businessEmailAddress,
+      //   businessPhoneNumber,
+      // } = data?.data.data?.UserBusinessDetail || {};
+      dispatch(
+        setUser({
+          isAuthenticated: Boolean(accessToken),
+          accessToken,
+          refreshToken,
+        })
+      );
+
+      const tokenExpiration = addMilliseconds(new Date(), expiresIn);
+      setCookie("expiresIn", tokenExpiration?.toISOString(), tokenExpiration);
+
+      // setLoginSuccess(true);
+      router.push("/overview");
+    } else {
+      return;
+    }
+  }, [router, data, dispatch]);
 
   const onSubmit = async (data: LoginFormData) => {
     console.log(data);
@@ -78,7 +122,7 @@ const Login = () => {
           />
 
           <Button className="w-full h-16 text-white" type="submit" size="lg">
-            Login{" "}
+            Login
           </Button>
         </form>
       </Form>
