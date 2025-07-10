@@ -1,10 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -13,10 +9,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import type { SignUpFormData } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { SignUpFormData } from "@/types";
 import { SignUpFormSchema } from "./validations";
+
 // import { useAppDispatch } from '@/store/hooks'
 
 const SignUp = () => {

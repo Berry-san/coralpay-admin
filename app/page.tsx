@@ -2,32 +2,32 @@
 
 import { Button } from "@/components/ui/button";
 import {
+  Form,
+  FormControl,
   FormField,
   FormItem,
-  FormControl,
   FormMessage,
-  Form,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { LoginFormData } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { SignInFormData, SignInFormSchema } from "./(auth)/sign-in/validations";
-import Link from "next/link";
-
+import { LoginFormSchema } from "./(auth)/login/validations";
 export default function Home() {
   const router = useRouter();
 
-  const form = useForm<SignInFormData>({
-    resolver: zodResolver(SignInFormSchema),
+  const form = useForm<LoginFormData>({
+    resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = async (data: SignInFormData) => {
+  const onSubmit = async (data: LoginFormData) => {
     console.log(data);
   };
 
