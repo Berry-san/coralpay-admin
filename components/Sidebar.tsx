@@ -1,65 +1,70 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 // import { MerchantSidebarLinks } from '@/constants/navigation'
 // import LogoutButton from '../atoms/LogoutButton'
-import { ChevronDown } from 'lucide-react'
-import { INavigationItem, sidebarNavigation } from '@/constants/navigation'
-import Image from 'next/image'
+import {
+  adminSidebarNavigation,
+  INavigationItem,
+  merchantSidebarNavigation,
+} from "@/constants/navigation";
+import { ChevronDown, LogOut, SettingsIcon } from "lucide-react";
+import Image from "next/image";
 
 interface SidebarProps {
-  sidebarOpen: boolean
-  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>
+  sidebarOpen: boolean;
+  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
-  const trigger = useRef<HTMLButtonElement>(null)
-  const sidebar = useRef<HTMLElement>(null)
-  const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false)
-  const [overlayActive, setOverlayActive] = useState<boolean>(false)
+  const trigger = useRef<HTMLButtonElement>(null);
+  const sidebar = useRef<HTMLElement>(null);
+  const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
+  const [overlayActive, setOverlayActive] = useState<boolean>(false);
+  const [userType, setUserType] = useState<"admin" | "merchant">("admin");
 
   useEffect(() => {
-    const storedSidebarExpanded = sessionStorage.getItem('sidebar-expanded')
-    setSidebarExpanded(storedSidebarExpanded === 'true')
+    const storedSidebarExpanded = sessionStorage.getItem("sidebar-expanded");
+    setSidebarExpanded(storedSidebarExpanded === "true");
 
     if (sidebarExpanded) {
-      document.body.classList.add('sidebar-expanded')
+      document.body.classList.add("sidebar-expanded");
     } else {
-      document.body.classList.remove('sidebar-expanded')
+      document.body.classList.remove("sidebar-expanded");
     }
-    setOverlayActive(sidebarOpen)
-  }, [sidebarExpanded, sidebarOpen])
+    setOverlayActive(sidebarOpen);
+  }, [sidebarExpanded, sidebarOpen]);
 
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
-      if (!sidebar.current || !trigger.current) return
+      if (!sidebar.current || !trigger.current) return;
       if (
         !sidebarOpen ||
         sidebar.current.contains(target as Node) ||
         trigger.current.contains(target as Node)
       )
-        return
-      setSidebarOpen(false)
-    }
+        return;
+      setSidebarOpen(false);
+    };
 
     const resizeHandler = () => {
       if (window.innerWidth >= 1279) {
-        setSidebarOpen(false)
-        setOverlayActive(false)
-        setSidebarExpanded(false)
+        setSidebarOpen(false);
+        setOverlayActive(false);
+        setSidebarExpanded(false);
       }
-    }
+    };
 
-    document.addEventListener('click', clickHandler)
-    window.addEventListener('resize', resizeHandler)
+    document.addEventListener("click", clickHandler);
+    window.addEventListener("resize", resizeHandler);
 
     return () => {
-      document.removeEventListener('click', clickHandler)
-      window.removeEventListener('resize', resizeHandler)
-    }
-  }, [sidebarOpen, setSidebarOpen])
+      document.removeEventListener("click", clickHandler);
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }, [sidebarOpen, setSidebarOpen]);
 
   return (
     <div className="relative rounded-full scrollbar">
@@ -72,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
       <aside
         ref={sidebar}
         className={`fixed left-0 top-0 inset-0 z-40 flex h-screen w-80 lg:w-64 flex-col overflow-y-hidden bg-sidebar text-white duration-300 ease-linear lg:static lg:translate-x-0 ${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         {/* Sidebar Header */}
@@ -102,11 +107,11 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
         </div>
 
         <Link
-          href={'/overview'}
+          href={"/overview"}
           className="flex items-center justify-center gap-2 my-4"
         >
           <Image
-            src={'/images/coralpayLogo.png'}
+            src={"/images/coralpayLogo.png"}
             alt="Ethica Logo"
             width={60}
             height={60}
@@ -118,52 +123,75 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           <div className="flex-grow overflow-y-auto">
             <nav className="py-8">
               <ul className="flex flex-col gap-2">
-                {sidebarNavigation.map((link) => (
-                  <SidebarLinks
-                    key={link.path}
-                    link={link}
-                    onClick={() => setSidebarOpen(false)}
-                  />
-                ))}
+                {userType === "admin"
+                  ? adminSidebarNavigation.map((link) => (
+                      <SidebarLinks
+                        key={link.path}
+                        link={link}
+                        onClick={() => setSidebarOpen(false)}
+                      />
+                    ))
+                  : merchantSidebarNavigation.map((link) => (
+                      <SidebarLinks
+                        key={link.path}
+                        link={link}
+                        onClick={() => setSidebarOpen(false)}
+                      />
+                    ))}
               </ul>
             </nav>
+          </div>
+          <div className="space-y-4 px-10 pt-4 pb-6 text-white border-t">
+            {/* <div className="flex items-center space-x-4 text-primary">
+              <BiSupport className="text-xl font-bold" />
+              <span>Help & Support</span>
+            </div> */}
+
+            <Link href="/support" className="flex items-center space-x-4">
+              <SettingsIcon className="text-xl font-bold" />
+              <span>Settings</span>
+            </Link>
+            <Link href="/support" className="flex items-center space-x-4">
+              <LogOut className="text-xl font-bold" />
+              <span>Logout</span>
+            </Link>
           </div>
         </div>
       </aside>
     </div>
-  )
-}
+  );
+};
 
 interface SidebarLinksProps {
-  link: INavigationItem
-  onClick: () => void
+  link: INavigationItem;
+  onClick: () => void;
 }
 
 const SidebarLinks: React.FC<SidebarLinksProps> = ({ link, onClick }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const pathname = usePathname();
 
-  const hasChildren = !!link.children?.length
-  const isActive = pathname.endsWith(link.path) || pathname === link.path
+  const hasChildren = !!link.children?.length;
+  const isActive = pathname.endsWith(link.path) || pathname === link.path;
 
   const toggleSubLinks = () => {
-    setIsOpen((prev) => !prev)
-  }
+    setIsOpen((prev) => !prev);
+  };
 
   return (
     <li>
       <div
         onClick={() => {
           if (hasChildren) {
-            toggleSubLinks()
+            toggleSubLinks();
           } else {
-            onClick()
+            onClick();
           }
         }}
         className={`flex items-center justify-between cursor-pointer px-10 py-2 ${
           isActive
-            ? 'bg-primary/25 text-white font-semibold border-l-3 border-[#DDE2FF]'
-            : 'hover:bg-white/10 text-text-primary'
+            ? "bg-primary/25 text-white font-semibold border-l-3 border-[#DDE2FF]"
+            : "hover:bg-white/10 text-text-primary"
         }`}
       >
         {hasChildren ? (
@@ -180,14 +208,14 @@ const SidebarLinks: React.FC<SidebarLinksProps> = ({ link, onClick }) => {
         {hasChildren && (
           <ChevronDown
             className={`w-4 h-4 transition-transform ${
-              isOpen ? 'rotate-180' : ''
+              isOpen ? "rotate-180" : ""
             }`}
           />
         )}
       </div>
 
       {hasChildren && isOpen && (
-        <ul className=" mt-2 space-y-1">
+        <ul className=" mt-2 space-y-1 pl-4">
           {link.children?.map((sub) => (
             <li key={sub.path}>
               <Link
@@ -195,8 +223,8 @@ const SidebarLinks: React.FC<SidebarLinksProps> = ({ link, onClick }) => {
                 onClick={onClick}
                 className={`flex items-center gap-3 px-6 py-2 ml-4 text-sm rounded-md ${
                   pathname === sub.path
-                    ? 'text-primary bg-white'
-                    : 'text-text-primary hover:bg-primary/25'
+                    ? "text-primary bg-white"
+                    : "text-text-primary hover:bg-primary/25"
                 }`}
               >
                 <span className="text-xl">{sub.icon}</span>
@@ -207,7 +235,7 @@ const SidebarLinks: React.FC<SidebarLinksProps> = ({ link, onClick }) => {
         </ul>
       )}
     </li>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
