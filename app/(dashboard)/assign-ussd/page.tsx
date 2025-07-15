@@ -82,7 +82,7 @@ const UssdApplication = () => {
 
                 <div className="flex w-full items-center justify-end">
                   <Button className="w-fit text-white rounded-sm" type="submit">
-                    Approve USSD <ChevronRight />
+                    Apply for USSD <ChevronRight />
                   </Button>
                 </div>
               </form>

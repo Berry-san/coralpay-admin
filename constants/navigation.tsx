@@ -38,7 +38,7 @@ export const adminSidebarNavigation: INavigationItem[] = [
       },
       {
         label: "Contacts",
-        path: "/organization/contacts",
+        path: "/organizations/contacts",
         icon: <LuCreditCard />,
       },
     ],
@@ -49,26 +49,14 @@ export const adminSidebarNavigation: INavigationItem[] = [
     icon: <LuCreditCard />,
   },
   {
-    label: "Assign Code",
-    path: "/assign-code",
+    label: "Assign USSD",
+    path: "/assign-ussd",
     icon: <CodeSquareIcon />,
   },
   {
     label: "Reports",
     icon: <TextSelectionIcon />,
     path: "/reports",
-    children: [
-      {
-        label: "General Report",
-        path: "/general-report",
-        // icon: <LuCreditCard />,
-      },
-      {
-        label: "Customized Report",
-        path: "/custom-report",
-        // icon: <LuCreditCard />,
-      },
-    ],
   },
   {
     label: "Audit Logs",
@@ -89,8 +77,8 @@ export const merchantSidebarNavigation: INavigationItem[] = [
     icon: <MdDashboard />,
   },
   {
-    label: "User Management",
-    path: "/user-management",
+    label: "Customers",
+    path: "/customers",
     icon: <UserCircle2 />,
   },
   {
@@ -102,28 +90,16 @@ export const merchantSidebarNavigation: INavigationItem[] = [
     label: "Reports",
     path: "/reports",
     icon: <TextSelectionIcon />,
-    children: [
-      {
-        label: "General Report",
-        path: "/general-report",
-        // icon: <LuCreditCard />,
-      },
-      {
-        label: "Customized Report",
-        path: "/custom-report",
-        // icon: <LuCreditCard />,
-      },
-    ],
   },
+  {
+    label: "Apply for USSD",
+    path: "/ussd-application",
+    icon: <CodeSquareIcon />,
+  },
+
   {
     label: "Audit Logs",
     path: "/audit-logs",
     icon: <Scroll />,
-  },
-
-  {
-    label: "Settings",
-    path: "/settings",
-    icon: <LuCreditCard />,
   },
 ];

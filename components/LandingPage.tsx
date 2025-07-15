@@ -1,14 +1,27 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const LandingPage = () => {
   return (
-    <div className="bg-gradient-to-b from-[#88529A] to-[#FFFFFF] w-full h-screen">
-      <div className="grid place-content-center h-full w-full">
+    <div className="min-h-screen bg-gradient-to-b from-[#88529A] to-[#FFFFFF] w-full h-screen text-white relative overflow-hidden">
+      {/* Top nav */}
+      <nav className="absolute top-6 right-6 flex items-center gap-4 z-20">
+        <Link
+          href="/login"
+          className="bg-black text-white px-6 py-3 rounded-md text-sm"
+        >
+          Login
+        </Link>
+      </nav>
+
+      {/* Dashboard Screenshot */}
+      <div className="absolute bottom-0 w-full flex justify-center z-0">
         <Image
-          src={"/images/coralpayLogo.png"}
-          alt="Landing Page"
-          width={200}
-          height={200}
+          src="/images/dashboardImage.png" // Update with actual path
+          alt="Dashboard Preview"
+          width={1000}
+          height={600}
+          className="rounded-t-xl shadow-2xl"
         />
       </div>
     </div>

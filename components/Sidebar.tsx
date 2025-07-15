@@ -23,7 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
   const sidebar = useRef<HTMLElement>(null);
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
   const [overlayActive, setOverlayActive] = useState<boolean>(false);
-  const [userType, setUserType] = useState<"admin" | "merchant">("admin");
+  const [userType, setUserType] = useState<"admin" | "merchant">("merchant");
 
   useEffect(() => {
     const storedSidebarExpanded = sessionStorage.getItem("sidebar-expanded");
@@ -147,11 +147,11 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
               <span>Help & Support</span>
             </div> */}
 
-            <Link href="/support" className="flex items-center space-x-4">
+            <Link href="/settings" className="flex items-center space-x-4">
               <SettingsIcon className="text-xl font-bold" />
               <span>Settings</span>
             </Link>
-            <Link href="/support" className="flex items-center space-x-4">
+            <Link href="/login" className="flex items-center space-x-4">
               <LogOut className="text-xl font-bold" />
               <span>Logout</span>
             </Link>

@@ -1,10 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import * as React from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { IoImageOutline } from "react-icons/io5";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -57,6 +57,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 {leftIcon}
               </span>
             )}
+            {label && <Label className="text-sm">{label}</Label>}
             <input
               type={type === "password" ? (show ? "text" : "password") : type}
               placeholder=" "
@@ -103,7 +104,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               id={inputId}
               type="file"
               ref={localInputRef} // 👈 Use a local ref to manually trigger
-              className="hidden"
+              className="p-3 bg-white w-full"
               {...multipleAttr}
               {...props}
             />
