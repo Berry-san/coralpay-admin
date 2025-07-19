@@ -17,15 +17,15 @@ export interface INavigationItem {
 
 export const adminSidebarNavigation: INavigationItem[] = [
   {
-    label: "Home",
-    path: "/homepage",
+    label: "Dashboard",
+    path: "/dashboard",
     icon: <MdDashboard />,
   },
-  {
-    label: "Customers",
-    path: "/customers",
-    icon: <UserCircle2 />,
-  },
+  // {
+  //   label: "Customers",
+  //   path: "/customers",
+  //   icon: <UserCircle2 />,
+  // },
   {
     label: "Organizations",
     icon: <Building2Icon />,
@@ -33,7 +33,7 @@ export const adminSidebarNavigation: INavigationItem[] = [
     children: [
       {
         label: "Merchants",
-        path: "/organizations",
+        path: "/merchants",
         icon: <LuCreditCard />,
       },
       {

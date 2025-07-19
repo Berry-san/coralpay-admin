@@ -15,13 +15,13 @@ const LandingPage = () => {
       </nav>
 
       {/* Dashboard Screenshot */}
-      <div className="absolute bottom-0 w-full flex justify-center z-0">
+      <div className="absolute -bottom-40 w-full flex justify-center z-0">
         <Image
           src="/images/dashboardImage.png" // Update with actual path
           alt="Dashboard Preview"
           width={1000}
           height={600}
-          className="rounded-t-xl shadow-2xl"
+          className="rounded-t-xl w-[90vw] shadow-2xl"
         />
       </div>
     </div>

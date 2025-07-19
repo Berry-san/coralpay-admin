@@ -21,7 +21,7 @@ const ChangePasswordPage = () => {
     }
 
     console.log("Password changed:", newPassword);
-    router.push("/homepage");
+    router.push("/dashboard");
   };
 
   return (

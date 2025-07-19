@@ -10,6 +10,7 @@ import {
   INavigationItem,
   merchantSidebarNavigation,
 } from "@/constants/navigation";
+import { useAppSelector } from "@/store/hooks";
 import { ChevronDown, LogOut, SettingsIcon } from "lucide-react";
 import Image from "next/image";
 
@@ -19,11 +20,12 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
+  const user = useAppSelector((state) => state.userService.user);
   const trigger = useRef<HTMLButtonElement>(null);
   const sidebar = useRef<HTMLElement>(null);
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
   const [overlayActive, setOverlayActive] = useState<boolean>(false);
-  const [userType, setUserType] = useState<"admin" | "merchant">("merchant");
+  const [userType, setUserType] = useState<"admin" | "merchant">("admin");
 
   useEffect(() => {
     const storedSidebarExpanded = sessionStorage.getItem("sidebar-expanded");
@@ -123,7 +125,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           <div className="flex-grow overflow-y-auto">
             <nav className="py-8">
               <ul className="flex flex-col gap-2">
-                {userType === "admin"
+                {user?.email === "admin@coralpay.com"
                   ? adminSidebarNavigation.map((link) => (
                       <SidebarLinks
                         key={link.path}

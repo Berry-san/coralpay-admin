@@ -52,6 +52,7 @@ const LoginPage = () => {
           isAuthenticated: Boolean(accessToken),
           accessToken,
           refreshToken,
+          email: form.getValues("email"),
         })
       );
 
@@ -67,6 +68,12 @@ const LoginPage = () => {
 
   const onSubmit = async (data: LoginFormData) => {
     console.log(data);
+    router.push("/change-password");
+    dispatch(
+      setUser({
+        email: form.getValues("email"),
+      })
+    );
   };
   return (
     <div className="grid grid-cols-12 h-[100dvh] text-text-primary overflow-hidden font-manrope">
