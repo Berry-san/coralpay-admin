@@ -73,7 +73,7 @@ export const adminSidebarNavigation: INavigationItem[] = [
 export const merchantSidebarNavigation: INavigationItem[] = [
   {
     label: "Home",
-    path: "/homepage",
+    path: "/dashboard",
     icon: <MdDashboard />,
   },
   {
